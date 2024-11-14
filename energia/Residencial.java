@@ -14,4 +14,6 @@ public class Residencial extends Casa {
     public double calcularCustoTotal(int meses) {
         return super.calcularConsumoTotal() * tarifaKwh * meses;
     }
+
+
 }

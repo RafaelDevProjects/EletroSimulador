@@ -10,4 +10,6 @@ public class Comercial extends Casa {
     public double calcularCustoTotal() {
         return super.calcularConsumoTotal() * tarifaKwh * 1.15;
     }
+
+
 }

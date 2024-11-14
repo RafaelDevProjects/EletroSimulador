@@ -18,6 +18,8 @@ public class Eletrodomestico {
         return (potencia * horasPorDia * dias) / 1000;
     }
 
+    //Getters and Setters
+
     public String getNome() {
         return nome;
     }
@@ -28,5 +30,17 @@ public class Eletrodomestico {
 
     public double getHorasPorDia() {
         return horasPorDia;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPotencia(double potencia) {
+        this.potencia = potencia;
+    }
+
+    public void setHorasPorDia(double horasPorDia) {
+        this.horasPorDia = horasPorDia;
     }
 }

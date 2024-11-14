@@ -3,6 +3,7 @@ package energia;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class SimuladorGastoEnergiaGUI extends JFrame {
     private JTextField tarifaField;
@@ -12,11 +13,19 @@ public class SimuladorGastoEnergiaGUI extends JFrame {
     private JPanel resultadoPanel;
     private Casa casa;
 
+    /**
+     * Construtor da classe SimuladorGastoEnergiaGUI.
+     * Este método configura a interface gráfica do simulador, incluindo os campos de entrada, botões, e áreas de resultado.
+     * Inicializa a janela com título, tamanho e comportamento de fechamento.
+     */
     public SimuladorGastoEnergiaGUI() {
         setTitle("Simulador de Gasto de Energia");
         setSize(500, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        // Impede o redimensionamento da janela (maximização)
+        setResizable(false); // Não permite redimensionar
 
         // Painel principal com layout BorderLayout para maior controle do design
         setLayout(new BorderLayout());
@@ -216,7 +225,10 @@ public class SimuladorGastoEnergiaGUI extends JFrame {
     }
 
 
-
+    /**
+     * Configura a casa com base no tipo de residência e a tarifa fornecida.
+     * @param tipoCasaBox O JComboBox que contém as opções de tipo de residência selecionada.
+     */
     private void configurarCasa(JComboBox<String> tipoCasaBox) {
         try {
             double tarifaKWh = Double.parseDouble(tarifaField.getText());
@@ -233,7 +245,12 @@ public class SimuladorGastoEnergiaGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Digite um valor válido para a tarifa.");
         }
     }
-
+    /**
+     * Adiciona um novo aparelho à casa, usando os dados fornecidos pelo usuário.
+     * @param nome O nome do aparelho.
+     * @param potencia A potência do aparelho em watts.
+     * @param horasPorDia O número de horas que o aparelho é usado por dia.
+     */
     private void adicionarAparelho() {
         try {
             String nome = nomeField.getText();
@@ -253,18 +270,25 @@ public class SimuladorGastoEnergiaGUI extends JFrame {
         }
     }
 
+
     private void adicionarResultado(String texto) {
         JLabel resultadoLabel = new JLabel(texto);
         resultadoPanel.add(resultadoLabel);
         resultadoPanel.revalidate();
     }
 
+    /**
+     * Calcula o consumo total de energia e o custo com base nos aparelhos cadastrados na casa.
+     * Exibe o resultado na interface gráfica.
+     */
     private void calcularConsumoCusto() {
         double consumoTotal = casa.calcularConsumoTotal();
         double custoTotal = casa.calcularCustoTotal();
 
-        adicionarResultado("Consumo total: " + consumoTotal + " kWh");
-        adicionarResultado("Custo total: " + custoTotal + " R$");
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        adicionarResultado("Consumo total: " + df.format(consumoTotal) + " kWh");
+        adicionarResultado("Custo total: " + df.format(custoTotal) + " R$");
     }
 
     public static void main(String[] args) {
