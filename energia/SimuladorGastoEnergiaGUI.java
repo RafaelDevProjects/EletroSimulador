@@ -170,6 +170,9 @@ public class SimuladorGastoEnergiaGUI extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * Exibe uma janela de ajuda com informações sobre o funcionamento do simulador.
+     */
     private void mostrarAjuda() {
         // Criar a janela de ajuda (JDialog)
         JDialog ajudaDialog = new JDialog(this, "Ajuda", true);
